@@ -1,0 +1,76 @@
+Пинжин Евгений Иванович
+Номер группы 5637
+
+
+-создание файла
+cat > Pets
+- заполнение файла
+Dog
+Cat
+Hamster
+ctrl + D - выход из cat
+
+-создание файла
+cat > PackAnimals
+- заполнение файла
+Horse
+Camel
+Donkey
+ctrl + D - выход из cat
+
+- создание нового файла с данными из двух других файлов
+cat Pets PackAnimals > File
+- чтение файла
+cat File
+Вывод:
+Dog
+Cat
+Hamster
+Horse
+Camel
+Donkey
+
+- переименовывание файла
+mv File HumanFriends
+- просмотр директории
+ls
+Вывод:
+Desktop Downloads Music PackAnimals Pictures snap Videos
+Documents HumanFriends Pets Public Templates
+
+- создание папки
+mkdir NewFolder
+- перемещение файла в папку
+mv HumanFriends NewFolder/
+
+- установка программы
+sudo apt install mysql-server -y
+
+- подключение дополнительного репозитория с https://launchpad.net
+sudo add-apt-repository ppa:data-platform/mysql-shell
+- обновление списка репозиториев в apt (и информация по обновлениям программ)
+sudo apt update
+- открытие файла со списком репозиториев
+sudo nano /etc/apt/sources.list
+
+- добавление в файл нового репозиторя строки взяты с https://launchpad.net
+deb https://ppa.launchpadcontent.net/data-platform/mysql-shell/ubuntu jammy main 
+deb-src https://ppa.launchpadcontent.net/data-platform/mysql-shell/ubuntu jammy main 
+
+- добавление ключа нового репозиторя 249AD24C взят с https://launchpad.net
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 249AD24C
+
+- обновление списка репозиториев в apt (и информация по обновлениям программ)
+sudo apt update
+- поиск новой программы в репозиториях
+sudo apt-cache search mysql-shell
+- установка новой программы из нового репозитория
+sudo apt-get install mysql-shell
+
+- скачиваем установочный пакет с сайта программы
+- переходим в папку загрузок
+cd Downloads/
+- устанавливаем программу
+sudo dpkg -i yandex-browser-stable_24.7.3.1253-1_amd64.deb
+- удоляем программу
+sudo dpkg -r yandex-browser-stable
