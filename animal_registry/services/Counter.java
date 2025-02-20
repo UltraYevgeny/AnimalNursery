@@ -1,23 +1,34 @@
 package services;
 
+import java.io.Closeable;
 import java.io.IOException;
 
-public class Counter implements AutoCloseable{
-    private int counter = 0;
-    private boolean isClosed = false;
+public class Counter implements Closeable {
+    private static int counter;
+    private static boolean isOpen = false;
 
-    public void add() throws IOException {
-        if (isClosed) throw new IOException("Нельзя вызвать, закрыт");
-        this.counter++;
+    public void add() {
+        counter++;
+        isOpen = true;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static boolean getIsIsOpen() {
+        return isOpen;
+    }
+
+    public static void setCounter(int counter) {
+        Counter.counter = counter;
     }
 
     @Override
-    public void close() throws Exception {
-        if (!isClosed) {
-            this.isClosed = true;
-        } else {
-            throw new IOException("ресурс уже закрыт");
-        }
-
+    public void close() throws IOException {
+        isOpen = false;
+        if (Counter.isOpen) throw new IOException();
     }
+
+
 }
