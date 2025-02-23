@@ -13,7 +13,10 @@ public class App {
      */
     public static void main(String[] args) {
 
-        Core.run(DataForTest.testMetod());
+        // запуск с тестовыми данными
+        //Core.run(DataForTest.testMetod());
+
+        Core.run();
 
     }
 

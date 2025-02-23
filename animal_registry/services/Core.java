@@ -1,29 +1,24 @@
 package services;
 
 import animals.Animals;
-import animals.animal_species.Camel;
 import animals.animals_types.PackAnimals;
 import animals.animals_types.Pets;
 import view.Menu;
 import view.Output;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.IllegalFormatException;
 import java.util.List;
-
-// памятка:  java.sql.Date.valueOf("2000-03-18")
 
 public class Core {
     final private static Menu menu = new Menu();
     final private static Counter counterObject = new Counter();
+    private static Registry registry = new Registry();
 
+    /* // запуск с тестовыми данными
     public static void run(List<Animals> testList) {
         Registry registry = new Registry();
-
         // заносим тестовый список в экземпляр registry
         for (int i = 0; i < testList.size(); i++) {
             registry.addAnimal(testList.get(i));
@@ -31,20 +26,22 @@ public class Core {
         PackAnimals.setPackAnimalsIdCounter(203);
         Pets.setPetsIdCounter(103);
         Counter.setCounter(6);
-
-
-        registry = startMenu(registry);
-
+        startMenu(registry);
         System.out.println("\nВыход из реестра выполнен.");
+    }
+    */
 
+    public static void run() {
+        startMenu(registry);
+        System.out.println("\nВыход из реестра выполнен.");
     }
 
-    private static Registry startMenu(Registry registry){
+    private static void startMenu(Registry registry){
         boolean exitProgramm = false;
 
-        while (exitProgramm == false) {
+        while (!exitProgramm) {
 
-            Date dob = null;
+            Date dob;
             int numberMenu = menu.startMenu();
 
             switch (numberMenu) {
@@ -62,7 +59,7 @@ public class Core {
 
                         if (!newAnimal.getName().isEmpty() &&
                         newAnimal.getBirthDate() != null &&
-                        !newAnimal.getCommands().get(0).isEmpty()){
+                        !newAnimal.getCommands().getFirst().isEmpty()){
 
                             if (newAnimal.getClass().getSuperclass() == PackAnimals.class){
                                 newAnimal.setId(PackAnimals.getPackAnimalsIdCounter());
@@ -105,7 +102,7 @@ public class Core {
                             flag = true;
                         }
                     }
-                    if (flag == false) System.out.println("Нет животных с такой датой рождения");
+                    if (!flag) System.out.println("Нет животных с такой датой рождения");
 
                     break;
 
@@ -126,20 +123,20 @@ public class Core {
             }
         }
 
-        return registry;
+
 
     }
 
 
-    private static Registry animalСommands(Registry registry){
+    private static void animalСommands(Registry registry){
         boolean exitProgramm = false;
         boolean flag;
 
-        while (exitProgramm == false){
+        while (!exitProgramm){
             int numberId;
             int numberMenu = menu.animalСommands();
 
-        switch (numberMenu) {
+            switch (numberMenu) {
             case 1:
                 // вывод животных обоих списков
                 Output.outputAnimals(registry);
@@ -169,7 +166,7 @@ public class Core {
                     }
                 }
 
-                if (flag == false) System.out.println("\nнет животного с таким id");
+                if (!flag) System.out.println("\nнет животного с таким id");
 
                 break;
 
@@ -184,7 +181,7 @@ public class Core {
                     for (int i = 0; i < registry.getPetsList().size(); i++) {
                         if (registry.getPetsList().get(i).getId() == numberId) {
                             tempCommands.addAll(registry.getPetsList().get(i).getCommands());
-                            tempCommands.addAll(List.of(menu.changeСommands()));
+                            tempCommands.addAll(menu.changeСommands());
                             registry.getPetsList().get(i).setCommands(tempCommands);
                             flag = true;
                         }
@@ -194,14 +191,14 @@ public class Core {
                     for (int i = 0; i < registry.getPackAnimalsList().size(); i++) {
                         if (registry.getPackAnimalsList().get(i).getId() == numberId) {
                             tempCommands.addAll(registry.getPackAnimalsList().get(i).getCommands());
-                            tempCommands.addAll(List.of(menu.changeСommands()));
+                            tempCommands.addAll(menu.changeСommands());
                             registry.getPackAnimalsList().get(i).setCommands(tempCommands);
                             flag = true;
                         }
                     }
                 }
 
-                if (flag == false) System.out.println("\nнет животного с таким id");
+                if (!flag) System.out.println("\nнет животного с таким id");
 
                 break;
 
@@ -210,8 +207,6 @@ public class Core {
                 break;
             }
         }
-
-        return registry;
     }
 
 

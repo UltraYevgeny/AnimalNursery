@@ -50,21 +50,37 @@ public class Menu {
         newAnimal.setBirthDate(java.sql.Date
                 .valueOf(stringScan("Введите День Рождения нового животного (например: 2000-01-01): ")));
         commandsNewAnimal = stringScan("Введите Команды нового животного, через запятую: ").split(",");
-        newAnimal.setCommands(List.of(commandsNewAnimal));
+        newAnimal.setCommands(deleteSpace(commandsNewAnimal));
 
         return newAnimal;
 
     }
 
-    public String[] changeСommands(){
-        return stringScan("Введите Новые команды животного, через запятую: ").split(",");
+    public List<String > changeСommands(){
+        return deleteSpace(stringScan("Введите Новые команды животного, через запятую: ").split(","));
     }
+
+    public List<String> deleteSpace(String[] arrayToChange){
+        List<String> newArray = new ArrayList<>();
+        for (String word : arrayToChange){
+            if (!word.isEmpty() && !word.isBlank()) newArray.add(word.trim());
+        }
+        return newArray;
+    }
+
 
 
     public int digitScan(String message) {
         Scanner in = new Scanner(System.in);
+
         System.out.print(message);
-        return Integer.parseInt(in.nextLine());
+
+        while (!in.hasNextInt()) {
+            System.out.print("\nЗначение не является числом, попробуйте еще раз: ");
+            in.reset();
+            in.next();
+        }
+        return in.nextInt();
     }
 
     public String stringScan(String message) {
