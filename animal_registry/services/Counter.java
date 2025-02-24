@@ -3,6 +3,9 @@ package services;
 import java.io.Closeable;
 import java.io.IOException;
 
+/**
+ * @apiNote класс счетчик для всех видов животных
+ */
 public class Counter implements Closeable {
     private static int counter;
     private static boolean isOpen = false;

@@ -8,10 +8,18 @@ import animals.animals_types.Pets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @apiNote класс реестр, хранит в себе списки домашних и вьючных животных
+ */
 public class Registry {
     private List<Pets> petsList = new ArrayList<>();
     private List<PackAnimals> packAnimalsList = new ArrayList<>();
 
+    /**
+     * @apiNote Метод определяет к какому типу животного принадлежит полученный параметр
+     * и после этого помещает животное в соответствующий список
+     * @param animal тип данных Animals
+     */
     void addAnimal(Animals animal){
 
         if (animal.getClass() == Camel.class){

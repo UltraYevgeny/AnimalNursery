@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @apiNote тестовые данные, при необходимости их можно внести в программу
+ */
 public class DataForTest {
     private static List<Animals> testList = new ArrayList<>();
 

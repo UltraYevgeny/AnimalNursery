@@ -1,8 +1,6 @@
 package view;
 
 import animals.Animals;
-import animals.animals_types.PackAnimals;
-import animals.animals_types.Pets;
 import services.AnimalClassIdentifier;
 
 import java.io.IOException;
@@ -50,6 +48,10 @@ public class Menu {
         newAnimal.setBirthDate(java.sql.Date
                 .valueOf(stringScan("Введите День Рождения нового животного (например: 2000-01-01): ")));
         commandsNewAnimal = stringScan("Введите Команды нового животного, через запятую: ").split(",");
+
+        if (commandsNewAnimal[0] == ""){
+            throw new IOException();
+        }
         newAnimal.setCommands(deleteSpace(commandsNewAnimal));
 
         return newAnimal;
@@ -57,10 +59,19 @@ public class Menu {
     }
 
     public List<String > changeСommands(){
-        return deleteSpace(stringScan("Введите Новые команды животного, через запятую: ").split(","));
+        String[] newComands;
+
+        while (true) {
+            newComands = stringScan("Введите Новые команды животного, через запятую: ").split(",");
+            if (!newComands[0].isBlank()){
+
+                return deleteSpace(newComands);
+            }
+        }
+
     }
 
-    public List<String> deleteSpace(String[] arrayToChange){
+    public List<String> deleteSpace(String[] arrayToChange) {
         List<String> newArray = new ArrayList<>();
         for (String word : arrayToChange){
             if (!word.isEmpty() && !word.isBlank()) newArray.add(word.trim());
