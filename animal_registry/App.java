@@ -1,23 +1,25 @@
-import animals.animals_types.PackAnimals;
 import services.Core;
 
+/**
+ * @author Пинжин Евгений Иванович
+ * @apiNote Программа: реестр питомника животных
+ * @apiNote Клиентский класс
+ * @version 1.01
+ */
 public class App {
 
-    //          Программа, может использоваться в различных системах,
-    //          поэтому необходимо разработать класс в виде конструктора
-
-    /**
-     * @author Пинжин Евгений Иванович
-     * @apiNote Программа: реестр питомника животных
-     * @version 1.0
-     */
     public static void main(String[] args) {
 
         // запуск с тестовыми данными
         //Core.run(DataForTest.testMetod());
 
+        //запуск из класса конструктора
+        //ClassAsConstructor classAsConstructor = new  ClassAsConstructor();
+        //classAsConstructor.runRegistry();
+
         Core.run();
 
     }
+
 
 }

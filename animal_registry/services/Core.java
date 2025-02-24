@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @apiNote основной класс для работы с реестром
+ */
 public class Core {
     final private static Menu menu = new Menu();
     final private static Counter counterObject = new Counter();
@@ -176,6 +179,7 @@ public class Core {
                 flag = false;
 
                 List<String> tempCommands = new ArrayList<>();
+
 
                 if (numberId < 200) {
                     for (int i = 0; i < registry.getPetsList().size(); i++) {
